@@ -1,18 +1,19 @@
 name: Trigger Tester Repository
 
 on:
-  push:  # Trigger on push events
+  push:  # Trigger this workflow on code push
     branches:
-      - main  # Or any branch you'd like to monitor
+      - main  # Specify the branch to monitor
 
 jobs:
   notify-tester:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Trigger Tester Repository Workflow
+      - name: Notify Tester Repository
         run: |
-          curl -X POST -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN111 }}" \
-          -H "Accept: application/vnd.github.v3+json" \
-          -d '{"event_type": "run-tests"}' \
-          https://api.github.com/repos/Sneha781/tester/dispatches
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d '{"event_type": "run-tests"}' \
+            https://api.github.com/repos/Sneha781/tester/dispatches
