@@ -1,23 +1,18 @@
-name: Trigger Tester Workflow
+name: Trigger Tester Repository
 
 on:
-  push:
+  push:  # Trigger on push events
     branches:
-      - main  
+      - main  # Or any branch you'd like to monitor
 
 jobs:
-  trigger:
+  notify-tester:
     runs-on: ubuntu-latest
-    steps:
-      # Step 1: Checkout code
-      - name: Checkout code
-        uses: actions/checkout@v3
 
-      # Step 2: Trigger Tester Workflow
-      - name: Trigger Tester Workflow
-        uses: repo-sync/github-action-workflow-dispatch@v2
-        with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN111 }}  # Ensure token has 'workflow' scope
-          repository: Sneha781/tester  # Target repository
-          workflow_file_name: test.yml  # Name of the workflow to trigger
-          ref: main  # Branch or commit ref to use (main in this case)
+    steps:
+      - name: Trigger Tester Repository Workflow
+        run: |
+          curl -X POST -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN111 }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          -d '{"event_type": "run-tests"}' \
+          https://api.github.com/repos/OWNER/tester/dispatches
