@@ -1,4 +1,4 @@
-name: Sync to Tester Repository
+ name: Sync to Tester Repository
 
 on:
   push:
