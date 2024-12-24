@@ -11,9 +11,10 @@ jobs:
     steps:
       - name: Notify Tester Repository
         run: |
-         curl -X POST http://15.206.147.64:8080/job/test-run/buildWithParameters \
-         --user Sneha781:11c4c7d9e0beade81a5a4d43cb1a0ce730 \
-         --data "ENV=staging"
+      
+         curl -X POST -H "Authorization: token <GITHUB_PERSONAL_ACCESS_TOKEN>" \
+          -d '{"event_type": "run-tests"}' \
+          'https://api.github.com/repos/<Sneha781>/<tester>/dispatches'
       # Step 3: Clone the Testing repository to a temporary directory
       - name: Clone Testing Repository
         run: |
