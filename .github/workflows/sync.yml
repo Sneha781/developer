@@ -11,7 +11,7 @@ jobs:
     steps:
       # Step 1: Checkout Developer Repository
       - name: Checkout Developer Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Fetch full history
 
