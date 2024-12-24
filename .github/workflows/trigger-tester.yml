@@ -15,4 +15,4 @@ jobs:
           curl -X POST -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN111 }}" \
           -H "Accept: application/vnd.github.v3+json" \
           -d '{"event_type": "run-tests"}' \
-          https://api.github.com/repos/OWNER/tester/dispatches
+          https://api.github.com/repos/Sneha781/tester/dispatches
