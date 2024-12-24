@@ -14,7 +14,7 @@ jobs:
       
          curl -X POST -H "Authorization: token <GITHUB_PERSONAL_ACCESS_TOKEN>" \
           -d '{"event_type": "run-tests"}' \
-          'https://github.com/Sneha781/tester/dispatches'
+          'https://github.com/Sneha781/tester.git'
       # Step 3: Clone the Testing repository to a temporary directory
       - name: Clone Testing Repository
         run: |
