@@ -44,4 +44,4 @@ jobs:
           else
             git commit -m "Auto-sync: Updating from Developer repository"
             git push origin main
-          fi
+          fi  
