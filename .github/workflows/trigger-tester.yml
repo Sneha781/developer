@@ -1,0 +1,21 @@
+name: Trigger Tester Workflow
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Trigger Tester Workflow
+        uses: repo-sync/github-action-workflow-dispatch@v2
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN111 }}  
+          repository: Sneha781/tester  
+          workflow_file_name: test.yml  
+          ref: main  
