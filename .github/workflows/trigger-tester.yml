@@ -9,13 +9,15 @@ jobs:
   trigger:
     runs-on: ubuntu-latest
     steps:
+      # Step 1: Checkout code
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Step 2: Trigger Tester Workflow
       - name: Trigger Tester Workflow
         uses: repo-sync/github-action-workflow-dispatch@v2
         with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN111 }}  
-          repository: Sneha781/tester  
-          workflow_file_name: test.yml  
-          ref: main  
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN111 }}  # Ensure token has 'workflow' scope
+          repository: Sneha781/tester  # Target repository
+          workflow_file_name: test.yml  # Name of the workflow to trigger
+          ref: main  # Branch or commit ref to use (main in this case)
