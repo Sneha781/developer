@@ -1,0 +1,25 @@
+name: Build and Trigger Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Developer Code
+        uses: actions/checkout@v2
+
+      - name: Build Application
+        run: |
+          # Example build command for your application
+          npm install && npm run build
+
+      - name: Trigger Tester Repository Tests
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          repository: Sneha781/tester> # Replace with your tester repo path
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN111 }}
+          event-type: run-tests
