@@ -1,27 +1,19 @@
-name: Auto Sync to Testing Repository
+name: Trigger Tester Repository
 
 on:
-  push:
+  push: # Trigger on every push
     branches:
-     - main  # Trigger on push to main branch in Developing repository
+      - main
 
 jobs:
-  sync:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
-
+  notify-tester:
+    runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout the Developing repository (source repository)
-      - name: Checkout Developing Repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Fetch full history for accurate sync
-
-      # Step 2: Set up Git user
-      - name: Configure Git User
+      - name: Notify Tester Repository
         run: |
-          git config --global user.name "Sneha781"
-          git config --global user.email "snehalatha.ikutti@qwikspark.com"
-
+         curl -X POST http://15.206.147.64:8080/job/test-run/buildWithParameters \
+         --user Sneha781:11c4c7d9e0beade81a5a4d43cb1a0ce730 \
+         --data "ENV=staging"
       # Step 3: Clone the Testing repository to a temporary directory
       - name: Clone Testing Repository
         run: |
