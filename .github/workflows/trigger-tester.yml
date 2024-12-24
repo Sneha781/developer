@@ -1,16 +1,18 @@
 name: Trigger Tester Repository
 
 on:
-  push: # Trigger on every push
+  push:
     branches:
-      - main
+      - main  # Trigger on push to the main branch of the current repository
 
 jobs:
   notify-tester:
     runs-on: ubuntu-latest
+
     steps:
       - name: Notify Tester Repository
         run: |
-          curl -X POST -H "Authorization: token <PERSONAL_ACCESS_TOKEN11>" \
+          curl -X POST -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
           -d '{"event_type": "run-tests"}' \
-          https://api.github.com/repos/<Sneha781>/<test-run>/dispatches
+          https://api.github.com/repos/Sneha781/test-run/dispatches
+
