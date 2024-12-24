@@ -3,11 +3,11 @@ name: Auto Sync to Testing Repository
 on:
   push:
     branches:
-      - main  # Trigger on push to main branch in Developing repository
+     - main  # Trigger on push to main branch in Developing repository
 
 jobs:
   sync:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
 
     steps:
       # Step 1: Checkout the Developing repository (source repository)
@@ -25,12 +25,12 @@ jobs:
       # Step 3: Clone the Testing repository to a temporary directory
       - name: Clone Testing Repository
         run: |
-          git clone https://Sneha781:${{ secrets.PERSONAL_ACCESS_TOKEN}}@github.com/Sneha781/tester /tmp/testing-repo
+          git clone https://Sneha781:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/Sneha781/tester /tmp/testing-repo
 
       # Step 4: Sync files from Developing to Testing repository
       - name: Sync Files to Testing Repository
         run: |
-          rsync -av --delete ./ /tmp/testing-repo/ --exclude .git
+          rsync -av --delete ./ /tmp/testing-repo/ --exclude .git  # Sync excluding the .git folder
           cd /tmp/testing-repo
           git status  # Check the current status after sync
 
@@ -43,5 +43,5 @@ jobs:
             echo "No changes to commit. Skipping push."
           else
             git commit -m "Auto-sync: Updating from Developing repository"
-            git push origin main
+            git push origin main  # Push changes to Testing repository
           fi
