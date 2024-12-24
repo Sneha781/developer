@@ -11,6 +11,6 @@ jobs:
     steps:
       - name: Notify Tester Repository
         run: |
-          curl -X POST -H "Authorization: token <PERSONAL_ACCESS_TOKEN1>" \
+          curl -X POST -H "Authorization: token <PERSONAL_ACCESS_TOKEN11>" \
           -d '{"event_type": "run-tests"}' \
           https://api.github.com/repos/<Sneha781>/<test-run>/dispatches
