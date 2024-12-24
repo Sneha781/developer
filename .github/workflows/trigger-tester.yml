@@ -11,30 +11,6 @@ jobs:
     steps:
       - name: Notify Tester Repository
         run: |
-      
-         curl -X POST -H "Authorization: token <GITHUB_PERSONAL_ACCESS_TOKEN11>" \
+          curl -X POST -H "Authorization: token <GITHUB_PERSONAL_ACCESS_TOKEN>" \
           -d '{"event_type": "run-tests"}' \
-          'https://github.com/Sneha781/tester.git'
-      # Step 3: Clone the Testing repository to a temporary directory
-      - name: Clone Testing Repository
-        run: |
-          git clone https://Sneha781:${{ secrets.PERSONAL_ACCESS_TOKEN11 }}github.com:Sneha781/tester.git
-
-      # Step 4: Sync files from Developing to Testing repository
-      - name: Sync Files to Testing Repository
-        run: |
-          rsync -av --delete ./ /tmp/testing-repo/ --exclude .git  # Sync excluding the .git folder
-          cd /tmp/testing-repo
-          git status  # Check the current status after sync
-
-      # Step 5: Commit and Push changes to Testing repository
-      - name: Commit and Push Changes
-        run: |
-          cd /tmp/testing-repo
-          git add -A
-          if git diff --cached --quiet; then
-            echo "No changes to commit. Skipping push."
-          else
-            git commit -m "Auto-sync: Updating from Developing repository"
-            git push origin main  # Push changes to Testing repository
-          fi
+          https://api.github.com/repos/<Sneha781>/<test-run>/dispatches
