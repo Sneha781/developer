@@ -12,7 +12,7 @@ jobs:
     steps:
       # Step 1: Checkout the Developing repository (source repository)
       - name: Checkout Developing Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Fetch full history for accurate sync
 
@@ -25,7 +25,8 @@ jobs:
       # Step 3: Clone Testing repository to a temporary directory
       - name: Clone Testing Repository
         run: |
-          git clone https://Sneha781:${{ secrets.PERSONAL_ACCESS_TOKEN11 }}@github.com/Sneha781/tester.git /tmp/testing-repo
+          git clone https://github.com/Sneha781/tester /tmp/testing-repo
+
       # Step 4: Sync files from Developing to Testing repository
       - name: Sync Files to Testing Repository
         run: |
@@ -33,7 +34,7 @@ jobs:
           cd /tmp/testing-repo
           git status  # Check the current status after sync
 
-      # Step 5: Commit and Push changes to Testing repository
+      # Step 5: Commit and Push changes to Testing repository using GITHUB_TOKEN
       - name: Commit and Push Changes
         run: |
           cd /tmp/testing-repo
@@ -42,5 +43,5 @@ jobs:
             echo "No changes to commit. Skipping push."
           else
             git commit -m "Auto-sync: Updating from Developing repository"
-            git push origin main
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Sneha781/tester.git
           fi
