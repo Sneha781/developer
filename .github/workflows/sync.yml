@@ -1,4 +1,4 @@
-      name: Sync to Tester Repository
+     name: Sync to Tester Repository
 
 on:
   push:
@@ -44,9 +44,4 @@ jobs:
           else
             git commit -m "Auto-sync: Updating from Developer repository"
             git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN111 }}@github.com/Sneha781/tester.git main
-          fi
-
-
-            git commit -m "Auto-sync: Updating from Developer repository"
-            git push origin main
           fi
